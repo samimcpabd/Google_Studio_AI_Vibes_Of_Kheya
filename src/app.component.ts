@@ -25,6 +25,12 @@ interface Resource {
   content: string;
 }
 
+interface Testimonial {
+  quote: string;
+  author: string;
+  title: string;
+}
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -51,8 +57,10 @@ export class AppComponent {
   selectedBlog = signal<Blog | null>(null);
   legalContent = signal<{ title: string; content: string } | null>(null);
   resourceContent = signal<Resource | null>(null);
-
-
+  
+  // Form state
+  formSubmitted = signal(false);
+  
   services: Service[] = [
     { id: 1, title: 'AI Automation & Agents', icon: 'M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.898 20.543l.227 1.58-.227-1.58a2.625 2.625 0 00-1.889-1.889l-1.58-.227 1.58-.227a2.625 2.625 0 001.889-1.889l.227-1.58-.227 1.58a2.625 2.625 0 001.889 1.889l1.58.227-1.58.227a2.625 2.625 0 00-1.889 1.889z', shortDescription: 'Automate everything—unleash smarter workflows, lead bots, custom chat AI, and digital assistants.', painPoints: ['Manual, repetitive tasks drain resources.', 'Inconsistent customer support.', 'Losing leads due to slow response times.'], solutions: ['End-to-end business workflow automation.', 'Custom AI chatbot design for web and social platforms.', 'Automated lead generation, scoring, and CRM syncing.'] },
     { id: 2, title: 'AI Ad Creatives', icon: 'M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.62a8.983 8.983 0 013.362-3.797z M15.362 5.214C14.467 5.474 13.43 5.668 12.354 5.826A8.968 8.968 0 0012 3c.905 0 1.77.124 2.583.355C14.536 4.072 14.93 4.598 15.362 5.214z', shortDescription: 'Cinematic ads, video testimonials, and post creatives—made by AI, delivered fast.', painPoints: ['High cost of video production.', 'Creative burnout and lack of ad variations.', 'Long turnaround times for new campaigns.'], solutions: ['AI-generated video ads tailored to your brand.', 'Automated image/video variations for multi-channel campaigns.', 'Preview, edit, and launch—all in days, not months.'] },
@@ -66,6 +74,12 @@ export class AppComponent {
     { id: 1, imageUrl: 'https://picsum.photos/400/250?random=1', category: 'AUTOMATION', title: 'How AI is Revolutionizing Customer Service', summary: 'Discover the impact of AI-powered agents on customer support and satisfaction.', fullContent: 'The landscape of customer service is undergoing a seismic shift, thanks to artificial intelligence. AI-powered chatbots and virtual assistants are available 24/7, providing instant responses to customer queries, resolving common issues without human intervention, and freeing up human agents to handle more complex and nuanced problems. This not only improves customer satisfaction with faster response times but also boosts operational efficiency. Furthermore, AI can analyze customer interactions to identify trends, predict future issues, and provide valuable insights for product and service improvements. The result is a more proactive, personalized, and efficient customer service experience that builds stronger brand loyalty.'},
     { id: 2, imageUrl: 'https://picsum.photos/400/250?random=2', category: 'EFFICIENCY', title: '5 Repetitive Tasks You Can Automate Today', summary: 'Free up your team\'s time by automating these common business processes.', fullContent: 'In every business, countless hours are lost to repetitive, manual tasks. Automation can reclaim this valuable time. Here are five processes to consider automating: 1. Data Entry: Automatically sync data between applications, spreadsheets, and databases. 2. Email Marketing: Set up automated sequences for welcoming new subscribers, nurturing leads, and re-engaging old customers. 3. Social Media Posting: Schedule posts across multiple platforms in advance. 4. Invoice Generation: Automatically create and send invoices based on project milestones or sales data. 5. Reporting: Generate daily, weekly, or monthly reports automatically, pulling data from various sources into a single dashboard. By automating these tasks, you empower your team to focus on strategic, high-value work that drives growth.'},
     { id: 3, imageUrl: 'https://picsum.photos/400/250?random=3', category: 'FUTURE OF WORK', title: 'The Rise of the AI-Powered Workforce', summary: 'Exploring how AI agents will collaborate with human teams in the near future.', fullContent: 'The future of work isn\'t about humans versus machines; it\'s about humans and machines working together. AI agents are becoming sophisticated collaborators, augmenting human capabilities rather than replacing them. Imagine an AI agent that prepares meeting briefings, summarizes long documents, and drafts initial email responses, allowing a project manager to focus on strategy and team leadership. In creative fields, AI can generate initial concepts and handle tedious editing tasks, freeing up designers to focus on innovation. This collaborative model, often called "human-in-the-loop," leads to greater productivity, higher-quality output, and more fulfilling work for employees. The organizations that embrace this hybrid workforce will be the leaders of tomorrow.'},
+  ];
+
+  testimonials: Testimonial[] = [
+    { quote: "The AI automation solution they built for us cut down our manual data entry by 90%. It's been a complete game-changer for our team's productivity.", author: 'Jane Doe', title: 'COO, Innovate Inc.' },
+    { quote: "Working with them was a breeze. They understood our vision for a custom CRM and delivered a platform that exceeded our expectations. Highly recommended!", author: 'John Smith', title: 'Founder, StartUp Solutions' },
+    { quote: "Their digital marketing campaigns have doubled our lead generation in just three months. The data-driven approach makes a real difference.", author: 'Emily White', title: 'Marketing Director, Growth Co.' }
   ];
 
   privacyPolicy: Resource = {
@@ -143,11 +157,19 @@ export class AppComponent {
   }
 
   openFormModal(): void {
+    this.formSubmitted.set(false);
     this.isFormModalOpen.set(true);
   }
   
   openVideoModal(): void {
     this.isVideoModalOpen.set(true);
+  }
+
+  handleFormSubmit(event: Event): void {
+    event.preventDefault();
+    // In a real app, you'd handle form data submission here.
+    // For this demo, we'll just show the success message.
+    this.formSubmitted.set(true);
   }
 
   closeModal(): void {
@@ -163,6 +185,7 @@ export class AppComponent {
       this.selectedBlog.set(null);
       this.legalContent.set(null);
       this.resourceContent.set(null);
+      this.formSubmitted.set(false);
     }, 300);
   }
 }

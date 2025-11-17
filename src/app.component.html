@@ -14,6 +14,7 @@
             <a href="#featured" (click)="scrollTo('featured', $event)" class="hover:text-[#D48D3F] transition-colors">Featured</a>
             <a href="#services" (click)="scrollTo('services', $event)" class="hover:text-[#D48D3F] transition-colors">Services</a>
             <a href="#pricing" (click)="scrollTo('pricing', $event)" class="hover:text-[#D48D3F] transition-colors">Pricing</a>
+            <a href="#testimonials" (click)="scrollTo('testimonials', $event)" class="hover:text-[#D48D3F] transition-colors">Testimonials</a>
             <a href="#blog" (click)="scrollTo('blog', $event)" class="hover:text-[#D48D3F] transition-colors">Blog</a>
             <a href="#contact" (click)="scrollTo('contact', $event)" class="hover:text-[#D48D3F] transition-colors">Contact</a>
           </div>
@@ -58,6 +59,7 @@
             <a href="#featured" (click)="scrollTo('featured', $event)" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-[#D48D3F] transition-colors duration-200">Featured</a>
             <a href="#services" (click)="scrollTo('services', $event)" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-[#D48D3F] transition-colors duration-200">Services</a>
             <a href="#pricing" (click)="scrollTo('pricing', $event)" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-[#D48D3F] transition-colors duration-200">Pricing</a>
+            <a href="#testimonials" (click)="scrollTo('testimonials', $event)" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-[#D48D3F] transition-colors duration-200">Testimonials</a>
             <a href="#blog" (click)="scrollTo('blog', $event)" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-[#D48D3F] transition-colors duration-200">Blog</a>
             <a href="#contact" (click)="scrollTo('contact', $event)" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-[#D48D3F] transition-colors duration-200">Contact</a>
             <!-- Search in mobile (only for small screens) -->
@@ -261,9 +263,31 @@
             </div>
         </div>
     </section>
+    
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="min-h-screen flex flex-col justify-center py-24 bg-[#1a3232]/30">
+        <div class="container mx-auto px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-extrabold text-white">What Our Clients Say</h2>
+                <p class="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">We partner with businesses to drive real results. Here's what they think.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                @for (testimonial of testimonials; track testimonial.author) {
+                    <div class="bg-[#102222] p-8 rounded-xl shadow-lg border border-gray-700/60 flex flex-col">
+                        <svg class="w-12 h-12 text-[#D48D3F]/50 mb-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10.75 3.922c0-1.428.984-2.344 2.344-2.344s2.344.916 2.344 2.344v.937c0 1.281-.625 2.5-1.5 3.406a4.47 4.47 0 0 1-1.187 1.031c-.625.406-1.156.906-1.5 1.5.219-.031.406-.062.625-.094.844-.125 1.688-.188 2.531-.188 2.063 0 3.75 1.688 3.75 3.75s-1.687 3.75-3.75 3.75a3.742 3.742 0 0 1-3.75-3.75c0-1.781.969-3.344 2.594-4.031.25-.094.469-.219.656-.344.125-.125.188-.25.188-.375v-.969c0-.688-.531-1.219-1.219-1.219-.687 0-1.218.531-1.218 1.219v.469c0 .25-.188.469-.469.469h-.469a.47.47 0 0 1-.469-.469v-.469Zm-7.531 0c0-1.428.984-2.344 2.344-2.344S8.1 2.494 8.1 3.922v.937c0 1.281-.625 2.5-1.5 3.406a4.47 4.47 0 0 1-1.187 1.031c-.625.406-1.156.906-1.5 1.5.219-.031.406-.062.625-.094.844-.125 1.688-.188 2.531-.188 2.063 0 3.75 1.688 3.75 3.75s-1.687 3.75-3.75 3.75a3.742 3.742 0 0 1-3.75-3.75c0-1.781.969-3.344 2.594-4.031.25-.094.469-.219.656-.344.125-.125.188-.25.188-.375v-.969c0-.688-.531-1.219-1.219-1.219-.687 0-1.218.531-1.218 1.219v.469c0 .25-.188.469-.469.469H2.75a.47.47 0 0 1-.469-.469v-.469Z"></path></svg>
+                        <p class="text-gray-300 flex-grow text-lg italic">"{{ testimonial.quote }}"</p>
+                        <div class="mt-6 border-t border-gray-700/60 pt-4 text-right">
+                            <p class="font-bold text-white text-lg">{{ testimonial.author }}</p>
+                            <p class="text-[#D48D3F]">{{ testimonial.title }}</p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
 
     <!-- Blog Section -->
-    <section id="blog" class="min-h-screen flex flex-col justify-center py-24 bg-[#1a3232]/30">
+    <section id="blog" class="min-h-screen flex flex-col justify-center py-24">
         <div class="container mx-auto px-8">
             <div class="text-center mb-16">
                 <h2 class="text-4xl lg:text-5xl font-extrabold text-white">From Our Blog</h2>
@@ -372,6 +396,7 @@
                         <li><a href="#featured" (click)="scrollTo('featured', $event)" class="hover:text-[#D48D3F] transition-colors">Featured</a></li>
                         <li><a href="#services" (click)="scrollTo('services', $event)" class="hover:text-[#D48D3F] transition-colors">Services</a></li>
                         <li><a href="#pricing" (click)="scrollTo('pricing', $event)" class="hover:text-[#D48D3F] transition-colors">Pricing</a></li>
+                        <li><a href="#testimonials" (click)="scrollTo('testimonials', $event)" class="hover:text-[#D48D3F] transition-colors">Testimonials</a></li>
                         <li><a href="#blog" (click)="scrollTo('blog', $event)" class="hover:text-[#D48D3F] transition-colors">Blog</a></li>
                         <li><a href="#contact" (click)="scrollTo('contact', $event)" class="hover:text-[#D48D3F] transition-colors">Contact</a></li>
                     </ul>
@@ -402,15 +427,20 @@
 
   <!-- Floating Action Buttons -->
   <div class="fixed bottom-6 right-6 space-y-3 z-50">
-    <button (click)="scrollTo('home', $event)" [class.opacity-0]="!isScrolled()" [class.pointer-events-none]="!isScrolled()" class="bg-[#D48D3F] text-white p-3 rounded-full shadow-lg hover:bg-orange-500 transition-all duration-300">
+     <button (click)="openFormModal()" title="Get in Touch" class="bg-[#D48D3F] text-white p-3 rounded-full shadow-lg hover:bg-orange-500 transition-all duration-300 transform hover:scale-110">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+        <path fill-rule="evenodd" d="M4.848 2.771A49.144 49.144 0 0112 2.25c2.43 0 4.817.178 7.152.52 1.978.292 3.348 2.024 3.348 3.97v6.02c0 1.946-1.37 3.678-3.348 3.97a48.901 48.901 0 01-3.476.383.39.39 0 00-.297.17l-2.755 4.133a.75.75 0 01-1.248 0l-2.755-4.133a.39.39 0 00-.297-.17 48.9 48.9 0 01-3.476-.384c-1.978-.29-3.348-2.024-3.348-3.97V6.741c0-1.946 1.37-3.68 3.348-3.97zM6.75 8.25a.75.75 0 01.75-.75h9a.75.75 0 010 1.5h-9a.75.75 0 01-.75-.75zm.75 2.25a.75.75 0 000 1.5H12a.75.75 0 000-1.5H7.5z" clip-rule="evenodd" />
+      </svg>
+    </button>
+    <button (click)="scrollTo('home', $event)" title="Scroll to Top" [class.opacity-0]="!isScrolled()" [class.pointer-events-none]="!isScrolled()" class="bg-gray-700 text-white p-3 rounded-full shadow-lg hover:bg-gray-600 transition-all duration-300">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
     </button>
   </div>
 
   <!-- Service Details Modal -->
   @if (isServiceModalOpen() && selectedService()) {
-    <div class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 backdrop-blur-sm" (click)="closeModal()">
-        <div class="bg-[#1a3232] border border-gray-700 rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto" (click)="$event.stopPropagation()">
+    <div class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 backdrop-blur-sm transition-opacity duration-300 ease-out" (click)="closeModal()">
+        <div class="bg-[#1a3232] border border-gray-700 rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto modal-animate" (click)="$event.stopPropagation()">
             <div class="p-8 sticky top-0 bg-[#1a3232] border-b border-gray-700 flex justify-between items-center">
                 <h2 class="text-2xl font-bold text-white">{{ selectedService()?.title }}</h2>
                 <button (click)="closeModal()" class="text-gray-400 hover:text-white text-3xl font-bold">&times;</button>
@@ -435,8 +465,8 @@
 
   <!-- Blog Post Modal -->
   @if (isBlogModalOpen() && selectedBlog()) {
-    <div class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 backdrop-blur-sm" (click)="closeModal()">
-        <div class="bg-[#1a3232] border border-gray-700 rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] flex flex-col" (click)="$event.stopPropagation()">
+    <div class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 backdrop-blur-sm transition-opacity duration-300 ease-out" (click)="closeModal()">
+        <div class="bg-[#1a3232] border border-gray-700 rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] flex flex-col modal-animate" (click)="$event.stopPropagation()">
             <div class="p-6 border-b border-gray-700 flex justify-between items-center">
                 <h2 class="text-xl font-bold text-white">{{ selectedBlog()?.title }}</h2>
                 <button (click)="closeModal()" class="text-gray-400 hover:text-white text-3xl font-bold">&times;</button>
@@ -451,8 +481,8 @@
 
   <!-- Legal Modal -->
   @if (isLegalModalOpen() && legalContent()) {
-    <div class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 backdrop-blur-sm" (click)="closeModal()">
-        <div class="bg-[#1a3232] border border-gray-700 rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] flex flex-col" (click)="$event.stopPropagation()">
+    <div class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 backdrop-blur-sm transition-opacity duration-300 ease-out" (click)="closeModal()">
+        <div class="bg-[#1a3232] border border-gray-700 rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] flex flex-col modal-animate" (click)="$event.stopPropagation()">
             <div class="p-6 border-b border-gray-700 flex justify-between items-center">
                 <h2 class="text-xl font-bold text-white">{{ legalContent()?.title }}</h2>
                 <button (click)="closeModal()" class="text-gray-400 hover:text-white text-3xl font-bold">&times;</button>
@@ -466,8 +496,8 @@
 
   <!-- Resource Modal -->
   @if (isResourceModalOpen() && resourceContent()) {
-    <div class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 backdrop-blur-sm" (click)="closeModal()">
-        <div class="bg-[#1a3232] border border-gray-700 rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] flex flex-col" (click)="$event.stopPropagation()">
+    <div class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 backdrop-blur-sm transition-opacity duration-300 ease-out" (click)="closeModal()">
+        <div class="bg-[#1a3232] border border-gray-700 rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] flex flex-col modal-animate" (click)="$event.stopPropagation()">
             <div class="p-6 border-b border-gray-700 flex justify-between items-center">
                 <h2 class="text-xl font-bold text-white">{{ resourceContent()?.title }}</h2>
                 <button (click)="closeModal()" class="text-gray-400 hover:text-white text-3xl font-bold">&times;</button>
@@ -481,8 +511,8 @@
   
   <!-- Explainer Video Modal -->
   @if (isVideoModalOpen()) {
-    <div class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 backdrop-blur-sm" (click)="closeModal()">
-        <div class="bg-[#1a3232] border border-gray-700 rounded-xl shadow-2xl w-full max-w-4xl aspect-video relative" (click)="$event.stopPropagation()">
+    <div class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 backdrop-blur-sm transition-opacity duration-300 ease-out" (click)="closeModal()">
+        <div class="bg-[#1a3232] border border-gray-700 rounded-xl shadow-2xl w-full max-w-4xl aspect-video relative modal-animate" (click)="$event.stopPropagation()">
            <button (click)="closeModal()" class="absolute -top-4 -right-4 bg-[#102222] rounded-full text-gray-400 hover:text-white text-3xl font-bold w-10 h-10 flex items-center justify-center border border-gray-700 z-10">&times;</button>
            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/z_g0cdeR404?autoplay=1" title="Explainer Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="rounded-xl"></iframe>
         </div>
@@ -491,54 +521,67 @@
 
   <!-- Form Modal -->
   @if (isFormModalOpen()) {
-    <div class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 backdrop-blur-sm" (click)="closeModal()">
-        <div class="bg-[#1a3232] border border-gray-700 rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col" (click)="$event.stopPropagation()">
+    <div class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 backdrop-blur-sm transition-opacity duration-300 ease-out" (click)="closeModal()">
+        <div class="bg-[#1a3232] border border-gray-700 rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col modal-animate" (click)="$event.stopPropagation()">
             <div class="p-6 border-b border-gray-700 flex justify-between items-center">
                 <h2 class="text-2xl font-bold text-white">Get a Free Audit</h2>
                 <button (click)="closeModal()" class="text-gray-400 hover:text-white text-3xl font-bold">&times;</button>
             </div>
             <div class="p-8 overflow-y-auto">
-              <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Name -->
-                <div>
-                  <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Name</label>
-                  <input type="text" id="name" class="w-full bg-[#102222] border border-gray-600 rounded-md p-2 focus:ring-[#D48D3F] focus:border-[#D48D3F] transition">
+              @if (!formSubmitted()) {
+                <form class="grid grid-cols-1 md:grid-cols-2 gap-6" (ngSubmit)="handleFormSubmit($event)">
+                  <!-- Name -->
+                  <div>
+                    <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Name <span class="text-red-500">*</span></label>
+                    <input type="text" id="name" required class="w-full bg-[#102222] border border-gray-600 rounded-md p-2 focus:ring-[#D48D3F] focus:border-[#D48D3F] transition">
+                  </div>
+                  <!-- Designation -->
+                  <div>
+                    <label for="designation" class="block text-sm font-medium text-gray-300 mb-1">Designation</label>
+                    <input type="text" id="designation" class="w-full bg-[#102222] border border-gray-600 rounded-md p-2 focus:ring-[#D48D3F] focus:border-[#D48D3F] transition">
+                  </div>
+                  <!-- Company Name -->
+                  <div class="md:col-span-2">
+                    <label for="company" class="block text-sm font-medium text-gray-300 mb-1">Company Name</label>
+                    <input type="text" id="company" class="w-full bg-[#102222] border border-gray-600 rounded-md p-2 focus:ring-[#D48D3F] focus:border-[#D48D3F] transition">
+                  </div>
+                  <!-- Address -->
+                  <div class="md:col-span-2">
+                    <label for="address" class="block text-sm font-medium text-gray-300 mb-1">Address</label>
+                    <input type="text" id="address" class="w-full bg-[#102222] border border-gray-600 rounded-md p-2 focus:ring-[#D48D3F] focus:border-[#D48D3F] transition">
+                  </div>
+                  <!-- Mobile No -->
+                  <div>
+                    <label for="mobile" class="block text-sm font-medium text-gray-300 mb-1">Mobile No</label>
+                    <input type="tel" id="mobile" class="w-full bg-[#102222] border border-gray-600 rounded-md p-2 focus:ring-[#D48D3F] focus:border-[#D48D3F] transition">
+                  </div>
+                  <!-- Email ID -->
+                  <div>
+                    <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Email ID <span class="text-red-500">*</span></label>
+                    <input type="email" id="email" required class="w-full bg-[#102222] border border-gray-600 rounded-md p-2 focus:ring-[#D48D3F] focus:border-[#D48D3F] transition">
+                  </div>
+                  <!-- Remarks -->
+                  <div class="md:col-span-2">
+                    <label for="remarks" class="block text-sm font-medium text-gray-300 mb-1">Remarks (Optional)</label>
+                    <textarea id="remarks" rows="4" class="w-full bg-[#102222] border border-gray-600 rounded-md p-2 focus:ring-[#D48D3F] focus:border-[#D48D3F] transition"></textarea>
+                  </div>
+                  <!-- Submit Button -->
+                  <div class="md:col-span-2 text-right">
+                    <button type="submit" class="bg-[#D48D3F] text-[#102222] font-semibold py-3 px-8 rounded-lg hover:bg-opacity-80 transition-all transform hover:scale-105 shadow-lg">Submit</button>
+                  </div>
+                </form>
+              } @else {
+                <div class="text-center py-10">
+                  <div class="inline-block bg-green-500/20 p-4 rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-12 h-12 text-green-400">
+                      <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.06-1.06L10.5 14.19l-1.72-1.72a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.06 0l4.5-4.5z" clip-rule="evenodd" />
+                    </svg>
+                  </div>
+                  <h3 class="text-2xl font-bold text-white mt-6">Thank You!</h3>
+                  <p class="text-gray-300 mt-2">Your audit request has been submitted successfully.<br>We will get back to you within 24 hours.</p>
+                  <button (click)="closeModal()" class="mt-8 bg-[#D48D3F] text-[#102222] font-semibold py-2 px-6 rounded-lg hover:bg-opacity-80 transition-all">Close</button>
                 </div>
-                <!-- Designation -->
-                <div>
-                  <label for="designation" class="block text-sm font-medium text-gray-300 mb-1">Designation</label>
-                  <input type="text" id="designation" class="w-full bg-[#102222] border border-gray-600 rounded-md p-2 focus:ring-[#D48D3F] focus:border-[#D48D3F] transition">
-                </div>
-                <!-- Company Name -->
-                <div class="md:col-span-2">
-                  <label for="company" class="block text-sm font-medium text-gray-300 mb-1">Company Name</label>
-                  <input type="text" id="company" class="w-full bg-[#102222] border border-gray-600 rounded-md p-2 focus:ring-[#D48D3F] focus:border-[#D48D3F] transition">
-                </div>
-                <!-- Address -->
-                 <div class="md:col-span-2">
-                  <label for="address" class="block text-sm font-medium text-gray-300 mb-1">Address</label>
-                  <input type="text" id="address" class="w-full bg-[#102222] border border-gray-600 rounded-md p-2 focus:ring-[#D48D3F] focus:border-[#D48D3F] transition">
-                </div>
-                <!-- Mobile No -->
-                <div>
-                  <label for="mobile" class="block text-sm font-medium text-gray-300 mb-1">Mobile No</label>
-                  <input type="tel" id="mobile" class="w-full bg-[#102222] border border-gray-600 rounded-md p-2 focus:ring-[#D48D3F] focus:border-[#D48D3F] transition">
-                </div>
-                <!-- Email ID -->
-                 <div>
-                  <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Email ID</label>
-                  <input type="email" id="email" class="w-full bg-[#102222] border border-gray-600 rounded-md p-2 focus:ring-[#D48D3F] focus:border-[#D48D3F] transition">
-                </div>
-                 <!-- Remarks -->
-                <div class="md:col-span-2">
-                  <label for="remarks" class="block text-sm font-medium text-gray-300 mb-1">Remarks (Optional)</label>
-                  <textarea id="remarks" rows="4" class="w-full bg-[#102222] border border-gray-600 rounded-md p-2 focus:ring-[#D48D3F] focus:border-[#D48D3F] transition"></textarea>
-                </div>
-                <!-- Submit Button -->
-                <div class="md:col-span-2 text-right">
-                  <button type="submit" class="bg-[#D48D3F] text-[#102222] font-semibold py-3 px-8 rounded-lg hover:bg-opacity-80 transition-all transform hover:scale-105 shadow-lg">Submit</button>
-                </div>
-              </form>
+              }
             </div>
         </div>
     </div>
